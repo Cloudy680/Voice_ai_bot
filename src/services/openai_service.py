@@ -23,11 +23,9 @@ async def get_assistant_response(text: str) -> str:
             model="gpt-4o",
             instructions="Ты — полезный и дружелюбный ИИ-помощник.",
             input=text,
-            stream=True,
         )
 
-        async for event in response:
-            return event
+        return response.output_text
     except Exception as e:
         print(f"Ошибка при работе с Chat Completions API: {e}")
         return "Извините, произошла ошибка при генерации ответа."
