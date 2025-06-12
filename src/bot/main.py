@@ -8,7 +8,7 @@ from src.bot.handlers import router as main_router
 async def start_bot():
 
     bot = Bot(
-        token=settings.telegram_bot_token,
+        token=settings.TELEGRAM_BOT_TOKEN,
         default=DefaultBotProperties(parse_mode=ParseMode.HTML)
     )
     dp = Dispatcher()

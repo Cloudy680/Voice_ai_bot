@@ -4,7 +4,7 @@ from typing import BinaryIO
 
 from src.config import settings
 
-client = AsyncOpenAI(api_key=settings.openai_api_key)
+client = AsyncOpenAI(api_key=settings.OPENAI_API_KEY)
 
 async def voice_to_text(voice_file: BinaryIO) -> str:
     try:
