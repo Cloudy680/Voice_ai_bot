@@ -19,14 +19,21 @@ async def voice_to_text(voice_file: BinaryIO) -> str:
 
 async def get_assistant_response(text: str) -> str:
     try:
-        response = await client.chat.completions.create(
+        # response = await client.chat.completions.create(
+        #     model="gpt-4o",
+        #     messages=[
+        #         {"role": "system", "content": "Ты — полезный и дружелюбный ИИ-помощник. Отвечай кратко и по делу."},
+        #         {"role": "user", "content": text}
+        #     ]
+        # )
+        # return response.choices[0].message.content
+        response = await client.responses.create(
             model="gpt-4o",
-            messages=[
-                {"role": "system", "content": "Ты — полезный и дружелюбный ИИ-помощник. Отвечай кратко и по делу."},
-                {"role": "user", "content": text}
-            ]
+            instructions="Ты — полезный и дружелюбный ИИ-помощник. Отвечай кратко и по делу.",
+            input=text,
         )
-        return response.choices[0].message.content
+
+        return response.output_text
     except Exception as e:
         print(f"Ошибка при работе с Chat Completions API: {e}")
         return "Извините, произошла ошибка при генерации ответа."
