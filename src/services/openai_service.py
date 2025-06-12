@@ -26,7 +26,7 @@ async def get_assistant_response(text: str) -> str:
             stream=True,
         )
 
-        async for event in stream:
+        async for event in response:
             return event
     except Exception as e:
         print(f"Ошибка при работе с Chat Completions API: {e}")
